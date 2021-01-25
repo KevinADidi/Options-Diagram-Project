@@ -46,6 +46,7 @@ class Option:
     def __str__(self) -> str:
         """ Return a short representation of the option
         """
+        
         return self.position + " " + self.option_type + \
                " contract, with strike price $" + str(self.strike_price) + \
                " and option price $" + str(self.price) 
@@ -53,6 +54,7 @@ class Option:
     def __repr__(self) -> str:
         """ Return a list of option details
         """
+        
         return "Contract Type: " + self.position + " " + \
                self.option_type + "\n Strike Price: $" + str(self.strike_price) + \
                "\n Option Price: $" + str(self.price) + "\n"
@@ -61,16 +63,51 @@ class Option:
         """ Return true iff an option has the same type, position, and
         strike price. The option may have a different premium/price.
         """
+        
         return (self.option_type == other.option_type) \
                and (self.position == other.position) \
                and (self.strike_price == other.strike_price)
 
 class Portfolio:
-    def __init__(self, options: List = [Option()]):
-        """ Initialize a portfolio with a list of options.
+    def __init__(self, options: List = [Option()], shares: bool = False) -> None:
+        """ Initialize a portfolio with a list of options and the underlying
+        asset, if shares is set to True.
         If no options were provided, a default option is created and added to
-        the portfolio. 
+        the portfolio. If no asset information was provided, the portfolio
+        defaults to False, and contains only options.
         """
+        
+        self.options = options
+        self.shares = shares
+        self.num_options = len(options)
+    
+    def __str__(self) -> str:
+        """ Return a short string representation of the portfolio
+        """
+        
+        if self.shares:
+            underlying = "and the underlying asset"
+        else:
+            underlying = ""
+        
+        new = ""
+        for option in self.options:
+            new = new + str(option) + "\n"
+        new = "[ \n" + new + " ] \n"
+            
+        return new + " is a portfolio with " + str(self.num_options) + \
+               " options " + underlying
+        
+    def __repr__(self) -> str:
+        """ Return a detailed listing of assets and derivatives in the portfolio
+        """ 
+        
+        if self.shares:
+            underlying = "\n including the underlying asset"
+        else:
+            underlying = ""
+            
+        return str(self.num_options) + " options: \n" + str(self.options) + underlying
     
     
 if __name__ == "__main__":
@@ -81,8 +118,10 @@ if __name__ == "__main__":
         trade_two = Option('put')
         trade_three = Option()
         trade_four = Option(price = 2)
-        my_portfolio = Portfolio([trade_one, trade_two, trade_three, trade_four])
+        my_portfolio = Portfolio([trade_one, trade_two, trade_three, trade_four], shares = True)
+        print(my_portfolio)
+        
         import doctest
-        print(doctest.testmod())
+        doctest.testmod()
     else:
         pass
