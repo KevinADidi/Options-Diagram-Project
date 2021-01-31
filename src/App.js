@@ -8,7 +8,7 @@ const App = () => {
     <div className="main">
       <h1 className="title">Options Visualizer</h1>
       <CanvChart />
-      <OptionForm/>
+      <OptionForm />
       <footer>
         <p>2021 🚀🚀🚀</p>
       </footer>

@@ -40,13 +40,27 @@ const CanvChart = () => {
                 options = {{
                     title: {
                         display: true,
-                        text: 'Alex numba one'
+                        text: 'VALUE DIAGRAM',
+                        fontColor: "rgba(255, 255, 255, 1)",
+                        fontFamily: 'Courier New',
+                        fontSize: 20,
                     },
                     scales: {
-                        ticks: {
-                            beginAtZero: true,
-                            autoSkip: true
-                        }
+                        xAxes: [{
+                            ticks: {
+                                callback: function(value, index, values){
+                                    return '$' + value;
+                                }
+                            },
+                            gridLines:{
+                                color: "rgba(255, 255, 255, 0.3)"
+                            }
+                        }],
+                        yAxes: [{
+                            gridLines:{
+                                color: "rgba(255, 255, 255, 0.3)"
+                            }
+                        }]
                     },
                     legend: false,
                     maintainAspectRatio: false,
