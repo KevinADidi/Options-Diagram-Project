@@ -4,49 +4,61 @@ class OptionForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'initialize the form',
+            type: "Call",
+            position: "Long",
+            shareprice: 0,
+            strikeprice: 0,
+            optionpremium: 0,
         };
     }
 
-    handleSubmit() {
+    handleChange = ({ target }) => {
+        this.setState({ [target.name]: target.value });
+     };
 
-    }
+     showStuff() {
+         console.log(this.state);
+     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Number of Options:  
-                    <input type="number" name="numOfOptions"/>
-                </label>
-                <br/>
-                <label>Option 1:</label>
-                <select>
-                    <option value="call">Call</option>
-                    <option value="put">Put</option>
-                </select>
+            
+            <div>
+                <form>
+                    <label>
+                        Number of Options:  
+                        <input type="number" name="numOfOptions"  onChange={this.handleChange}/>
+                    </label>
+                    <br/>
+                    <label>Option 1:</label>
 
-                <select>
-                    <option value="long">Long</option>
-                    <option value="short">Short</option>
-                </select>
+                    <select  name="position" onChange={this.handleChange}>
+                        <option name="long">Long</option>
+                        <option name="short">Short</option>
+                    </select>
 
-                <label>
-                    Share Price:  
-                    <input type="number" name="shareprice"/>
-                </label>
+                    <select name="type" onChange={this.handleChange}>
+                        <option name="call">Call</option>
+                        <option name="put">Put</option>
+                    </select>
 
-                <label>
-                    Strike Price:  
-                    <input type="number" name="strikeprice"/>
-                </label>
+                    <label>
+                        Share Price:  
+                        <input type="number" name="shareprice"  onChange={this.handleChange}/>
+                    </label>
 
-                <label>
-                    Option Premium:  
-                    <input type="number" name="optionpremium"/>
-                </label>
-                
-            </form>
+                    <label>
+                        Strike Price:  
+                        <input type="number" name="strikeprice"  onChange={this.handleChange}/>
+                    </label>
+
+                    <label>
+                        Option Premium:  
+                        <input type="number" name="optionpremium"  onChange={this.handleChange}/>
+                    </label>
+                    
+                </form>
+            </div>
         )
     }
 }
