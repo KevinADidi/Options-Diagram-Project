@@ -80,6 +80,19 @@ class Portfolio:
         self.options = options
         self.shares = shares
         self.num_options = len(options)
+        
+    def add_options(self, option: "Option") -> None:
+        """ Add a new option to the portfolio.
+        """
+        
+        self.options.append(option)
+        self.num_options += 1
+        
+    def change_position(self, shares: bool) -> None:
+        """
+        """
+        
+        self.shares = shares
     
     def __str__(self) -> str:
         """ Return a short string representation of the portfolio
