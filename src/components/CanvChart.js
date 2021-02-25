@@ -1,5 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
+import { lastNode } from './OptionForm';
 
 const CanvChart = () => {
     return (
@@ -8,24 +9,24 @@ const CanvChart = () => {
             <Line
 
                 data = {{
-                    labels: [0, 5, 10, 15, 20, 25, 30],
+                    labels: [0, lastNode],
                     datasets: [{
                       label: "Value Diagram",
-                      data: [
-                                {
-                                    x: 10,
-                                    y: 20
-                                }, {
-                                    x: 15,
-                                    y: 10
-                                }, {
-                                    x: 20,
-                                    y: 15
-                                }, {
-                                    x: 25,
-                                    y: 30
-                                }
-                            ],
+                    //   data: [
+                    //             {
+                    //                 x: 10,
+                    //                 y: 20
+                    //             }, {
+                    //                 x: 15,
+                    //                 y: 10
+                    //             }, {
+                    //                 x: 20,
+                    //                 y: 15
+                    //             }, {
+                    //                 x: 25,
+                    //                 y: 30
+                    //             }
+                    //         ],
                       fill: false,
                       spanGaps: true,
                       pointRadius: 10,
