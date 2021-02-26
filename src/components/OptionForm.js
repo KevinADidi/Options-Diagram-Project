@@ -1,7 +1,9 @@
 import React from 'react';
 
-var lastNode = 100;
+var startNode = 0;
+var lastNode = 70;
 export { lastNode };
+export { startNode };
 
 class OptionForm extends React.Component {
     constructor(props) {
