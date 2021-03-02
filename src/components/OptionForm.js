@@ -5,6 +5,19 @@ var lastNode = 70;
 export { lastNode };
 export { startNode };
 
+var lstNode = [];
+
+var node = {
+    type: "Call",
+    position: "Long",
+    shareprice: 0,
+    strikeprice: 0,
+    optionpremium: 0
+};
+// append the to the list of nodes everytime new options are made
+
+export { lstNode };
+
 class OptionForm extends React.Component {
     constructor(props) {
         super(props);
