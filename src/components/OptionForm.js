@@ -7,14 +7,6 @@ export { lastNode };
 export { startNode };
 
 var lstNode = [];
-
-var node = {
-    type: "Call",
-    position: "Long",
-    shareprice: 0,
-    strikeprice: 0,
-    optionpremium: 0
-};
 // append the to the list of nodes everytime new options are made
 
 export { lstNode };
@@ -28,15 +20,25 @@ function AddOption(props) {
 class OptionForm extends React.Component {
     constructor(props) {
         super(props);
+        let initialOption = {
+            name: 1,
+            type: "Call",
+            position: "Long",
+            shareprice: 0,
+            strikeprice: 0,
+            optionpremium: 0
+        };
         this.state = {
- 
-            options: [1,2,3],
+            options: [initialOption],
         };
     }
 
-    handleChange = (event) => {
-        console.log(event);
-        this.setState({ [event.target.name]: event.target.value });
+    handleChange = (event, num) => {
+        //console.log(event);
+        const updatedState = this.state;
+        updatedState.options[num-1][event.target.name] = event.target.value;
+        this.setState(updatedState);
+        this.props.updateData(this.state.options);
      };
 
      showStuff() {
@@ -45,7 +47,16 @@ class OptionForm extends React.Component {
 
      addOption = () => {
         const options = this.state.options;
-        options.push(this.state.options.length + 1);
+        const newOption = {
+            name: this.state.options.length + 1,
+            type: "Call",
+            position: "Long",
+            shareprice: 0,
+            strikeprice: 0,
+            optionpremium: 0
+        };
+        
+        options.push(newOption);
         this.setState((state) => ({
             options: options
         }));
@@ -58,7 +69,7 @@ class OptionForm extends React.Component {
             <div>
                 {
                         options.map((opt) => (
-                            <Option num={opt} handleChange={this.handleChange} />
+                            <Option key={opt.name} num={opt.name} handleChange={this.handleChange} />
                         ))
                     }
                 <AddOption onClick={this.addOption}/>
