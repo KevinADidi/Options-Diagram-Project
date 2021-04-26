@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: black;
+  background-color: rgb(17, 18, 22);
 }
 
 .title {
@@ -15,4 +15,63 @@ body {
 footer {
   text-align: center;
   margin: 10%;
+}
+
+button {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  background-color: white;
+  text-decoration: none;
+  border: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.remove:hover {
+  color: white;
+  background-color: red;
+}
+
+.form {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.addOption {
+  margin: 2%;
+  display: flex;
+  justify-content: center;
+}
+
+.addOption button{
+  width: 200px;
+  height: 40px;
+}
+
+.addOption button:hover {
+  color: white;
+  background-color: green;
+}
+
+/* Option styles */
+.option {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  font-size: 20px;
+}
+
+.option select{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+}
+
+.option input {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  width: 70px;
 }
