@@ -6,17 +6,19 @@ class Option extends React.Component {
         const {num, handleChange} = this.props;
         return (
             <div>
-                <form>
-                    Option {num}:
-                    <select  name="position" onChange={(event) => {handleChange(event,num)}}>
-                        <option name="long">Long</option>
-                        <option name="short">Short</option>
-                    </select>
+                <form className="form">
+                    <div>
+                        Option {num}:
+                        <select  name="position" onChange={(event) => {handleChange(event,num)}}>
+                            <option name="long">Long</option>
+                            <option name="short">Short</option>
+                        </select>
 
-                    <select name="type" onChange={(event) => {handleChange(event,num)}}>
-                        <option name="call">Call</option>
-                        <option name="put">Put</option>
-                    </select>
+                        <select name="type" onChange={(event) => {handleChange(event,num)}}>
+                            <option name="call">Call</option>
+                            <option name="put">Put</option>
+                        </select>
+                    </div>
 
                     <label>
                         Share Price:  
@@ -32,6 +34,9 @@ class Option extends React.Component {
                         Option Premium:  
                         <input type="number" name="optionpremium"  onChange={(event) => {handleChange(event,num)}}/>
                     </label>
+                    <button className="remove">
+                        X
+                    </button>
                 </form>
             </div>
         )

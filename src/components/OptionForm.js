@@ -66,13 +66,16 @@ class OptionForm extends React.Component {
         const { options } = this.state;
         console.log(options);
         return (
-            <div>
+            <div className="option">
                 {
                         options.map((opt) => (
                             <Option key={opt.name} num={opt.name} handleChange={this.handleChange} />
                         ))
                     }
-                <AddOption onClick={this.addOption}/>
+
+                <div className="addOption">
+                    <AddOption onClick={this.addOption}/>
+                </div>
             </div>
         )
     }
