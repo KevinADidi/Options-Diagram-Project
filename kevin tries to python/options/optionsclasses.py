@@ -1,6 +1,7 @@
 from typing import List
-""" Option Classes Version 0.1. 
-This file was created to serve as a precursor to a python program that analyses
+
+""" Option Classes Version 0.5. 
+This file was created to serve as a precursor to a Python program that analyses
 the value of certain options portfolios and combinations.
 
 This file is still a work in progress and does not reflect the final product.
@@ -15,18 +16,20 @@ class Option:
     position (long/short), strike price, and option premium/price.
     """
     def __init__(self, option_type: str = 'call', 
-                 position: str = 'long', strike_price: float = 100,
-                 price: float = 0) -> None:
+                 position: str = 'long', strike_price: int = 100,
+                 price: float = 0, num_contracts: int = 1) -> None:
         """ Initialize an option, specifying its type,
-        the position taken, the strike price, and premium/price, if applicable.
+        the position taken, the strike price, and premium/price, if applicable
+        and the number of options contracts.
         
         Default values (if empty upon initialization):
         option_type: 'call'
         position: 'long'
         strike_price: 100
         premium/price: 0
+        num_contracts: 1
         
-        >>> trade_one = Option('put', 'short', 50, 2.4)
+        >>> trade_one = Option('put', 'short', 50, 2.4, 2)
         >>> trade_two = Option()
         >>> trade_one.option_type
         'put'
@@ -42,17 +45,18 @@ class Option:
         self.position = position
         self.strike_price = strike_price
         self.price = price
+        self.num_contracts = num_contracts
         
     def __str__(self) -> str:
-        """ Return a short representation of the option
+        """ Return a short representation of the option.
         """
         
-        return self.position + " " + self.option_type + \
-               " contract, with strike price $" + str(self.strike_price) + \
+        return str(self.num_contracts) + " " + self.position + " " + self.option_type + \
+               " contract(s), with strike price $" + str(self.strike_price) + \
                " and option price $" + str(self.price) 
             
     def __repr__(self) -> str:
-        """ Return a list of option details
+        """ Return a list of option details.
         """
         
         return "Contract Type: " + self.position + " " + \
@@ -61,7 +65,8 @@ class Option:
     
     def __eq__(self, other: 'Option') -> bool:
         """ Return true iff an option has the same type, position, and
-        strike price. The option may have a different premium/price.
+        strike price. The option may have a different premium/price or
+        number of contracts.
         """
         
         return (self.option_type == other.option_type) \
@@ -80,19 +85,6 @@ class Portfolio:
         self.options = options
         self.shares = shares
         self.num_options = len(options)
-        
-    def add_options(self, option: "Option") -> None:
-        """ Add a new option to the portfolio.
-        """
-        
-        self.options.append(option)
-        self.num_options += 1
-        
-    def change_position(self, shares: bool) -> None:
-        """
-        """
-        
-        self.shares = shares
     
     def __str__(self) -> str:
         """ Return a short string representation of the portfolio
