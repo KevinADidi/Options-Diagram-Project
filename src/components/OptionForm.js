@@ -64,7 +64,7 @@ class OptionForm extends React.Component {
 
     render() {
         const { options } = this.state;
-        console.log(options);
+        // console.log(options);
         return (
             <div className="option">
                 {

@@ -6,22 +6,29 @@ import OptionForm from './components/OptionForm';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
+    let initialOption = {
+      name: 1,
+      type: "Call",
+      position: "Long",
+      shareprice: 0,
+      strikeprice: 0,
+      optionpremium: 0
+    };
     this.state = {
-      options: []
-    }
+      options: [initialOption],
+    };
   }
 
   getOptionData = (options) => {
     this.setState({options: options});
-    console.log(this.state.options);
+    // console.log(this.state.options);
   }
 
   render() {
     return(
       <div className="main">
         <h1 className="title">Options Visualizer</h1>
-        <CanvChart />
+        <CanvChart optionsArray={this.state.options}/>
         <OptionForm updateData={this.getOptionData}/>
         <footer>
           <p>2021 🚀🚀🚀</p>
