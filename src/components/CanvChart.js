@@ -1,69 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Chart from "react-apexcharts";
 
-class CanvChart extends React.Component{
-    
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          options: {
-            chart: {
-              id: "basic-bar"
-            },
-            xaxis: {
-                type: "numeric",
-                min: 0,
-                categories: [],
-                axisTicks: {
-                    show: true
-                },
-                tickAmount: 9
-                }
-            },
-            noData: {
-                text: "Loading..."
-            },
-            series: [
-                {
-                name: "series-1",
-                data:
-                
-                [ 
-                    {
-                        x: 1,
-                        y: 1,
-                    },{
-                        x: 2,
-                        y: 2
-                    },{
-                        x: 10,
-                        y: 10
-                    }
-                ]
-                }
-            ]
-            };
-        }
+const CanvChart = ({ optionsArray }) => {
+    const initialState = {
+        options: {
+          chart: {
+            id: "basic-bar"
+          },
+          xaxis: {
+              type: "numeric",
+              min: 0,
+              categories: [],
+              axisTicks: {
+                  show: true
+              },
+              tickAmount: 9
+              }
+          },
+          noData: {
+              text: "Loading..."
+          },
+          series: [
+              {
+              name: "series-1",
+              data:
+              
+              [ 
+                  {
+                      x: 1,
+                      y: 1,
+                  },{
+                      x: 2,
+                      y: 2
+                  },{
+                      x: 10,
+                      y: 10
+                  }
+              ]
+              }
+          ]
+          };
+    const [ state, setState ] = useState(initialState)
 
-    render() {
-        return (
-            <div>
+    return (
+        <div className="chart">
                 <Chart
-                    options={this.state.options}
-                    series={this.state.series}
+                    options={state.options}
+                    series={state.series}
                     type="line"
                     width="100%"
                     height="400"
                 />
-            </div>
-        );
-    }
-
+        </div>
+    )
 }
-
-
-
-
 
 export default CanvChart

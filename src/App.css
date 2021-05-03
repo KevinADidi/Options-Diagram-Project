@@ -1,7 +1,10 @@
 .main {
   font-family: 'Courier New', Courier, monospace;
-  /* background-color: black; */
-  color: Black;
+  color: white;
+}
+
+.chart {
+  color: black;
 }
 
 body {
@@ -74,4 +77,8 @@ button {
   font-family: 'Courier New', Courier, monospace;
   font-size: 20px;
   width: 70px;
+}
+
+.noOption {
+  text-align: center;
 }

@@ -1,84 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Option from './Option';
 
-var startNode = 0;
-var lastNode = 70;
-export { lastNode };
-export { startNode };
+const OptionForm= ({ addOption }) => {
+    const [ optionsArray, setOptionsArray ] = useState([])
 
-var lstNode = [];
-// append the to the list of nodes everytime new options are made
-
-export { lstNode };
-
-function AddOption(props) {
-    return <button onClick={props.onClick}>
-        Add Option
-    </button>
-}
-
-class OptionForm extends React.Component {
-    constructor(props) {
-        super(props);
-        let initialOption = {
-            name: 1,
+    const addOptionForm = () => {
+        const newOption = {
+            name: optionsArray.length+1,
             type: "Call",
             position: "Long",
             shareprice: 0,
             strikeprice: 0,
             optionpremium: 0
-        };
-        this.state = {
-            options: [initialOption],
-        };
+          }
+          const newOptionsArray = optionsArray.concat(newOption)
+        setOptionsArray(newOptionsArray)
+        addOption(newOptionsArray)
     }
 
-    handleChange = (event, num) => {
-        //console.log(event);
-        const updatedState = this.state;
-        updatedState.options[num-1][event.target.name] = event.target.value;
-        this.setState(updatedState);
-        this.props.updateData(this.state.options);
-     };
+    const changeOptionForm = (event, num) => {
+        console.log(num,event.target.name, event.target.value)
+        let newOptionsArray = optionsArray.concat()
+        newOptionsArray[num-1][event.target.name] = event.target.value
+        setOptionsArray(newOptionsArray)
+        addOption(newOptionsArray)
+    }
 
-     showStuff() {
-         console.log(this.state);
-     }
-
-     addOption = () => {
-        const options = this.state.options;
-        const newOption = {
-            name: this.state.options.length + 1,
-            type: "Call",
-            position: "Long",
-            shareprice: 0,
-            strikeprice: 0,
-            optionpremium: 0
-        };
-        
-        options.push(newOption);
-        this.setState((state) => ({
-            options: options
-        }));
-     }
-
-    render() {
-        const { options } = this.state;
-        // console.log(options);
+    if (optionsArray.length === 0) {
         return (
-            <div className="option">
-                {
-                        options.map((opt) => (
-                            <Option key={opt.name} num={opt.name} handleChange={this.handleChange} />
-                        ))
-                    }
-
+            <div className="noOption" style={{textAlign: 'center'}}>
+                <h2>No Options present. Go add one!</h2>
                 <div className="addOption">
-                    <AddOption onClick={this.addOption}/>
+                    <button onClick={() => {addOptionForm()}}>Add Option</button>
                 </div>
             </div>
+            
         )
     }
+
+    return (
+        <div className="option">
+                {optionsArray.map((opt, i) => (
+                            <Option key={i} num={opt.name} handleChange={changeOptionForm}/>
+                        ))}
+                <div className="addOption">
+                    <button onClick={() => {addOptionForm()}}>Add Option</button>
+                </div>
+            </div>
+    )
 }
 
 export default OptionForm
