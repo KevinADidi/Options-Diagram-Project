@@ -18,11 +18,6 @@ const Option = ({num, handleChange}) => {
                 </div>
 
                 <label>
-                    Share Price:  
-                    <input type="number" name="shareprice"  onChange={(event) => {handleChange(event,num)}}/>
-                </label>
-
-                <label>
                     Strike Price:  
                     <input type="number" name="strikeprice"  onChange={(event) => {handleChange(event,num)}}/>
                 </label>

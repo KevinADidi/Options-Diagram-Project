@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Chart from "react-apexcharts";
 
-
-
 const CanvChart = ({ optionsArray }) => {
-
-    let arr = [];
     const generate = () => {
-        arr = [];
-        if(optionsArray.length === 0){
-            // do nothing
-        }else{
+        let arr = [];
+        if(optionsArray.length !== 0){
             for(var i = 0; i < optionsArray.length; i++){
                 let data = {x: parseInt(optionsArray[i].strikeprice), y: parseInt(optionsArray[i].strikeprice)};
                 arr.push(data);
             }
         }
+        console.log('generate', arr)
         return arr;
     }
 
-    const initialState = {
+    const state = {
         options: {
           chart: {
             id: "basic-bar"
@@ -39,15 +34,13 @@ const CanvChart = ({ optionsArray }) => {
           },
           series: [
               {
-                data: arr
+                data: generate()
               }
             ]
           };
-    const [ state, setState ] = useState(initialState)
 
-    generate();
-    console.log(arr);
     return (
+        console.log('from chart', state),
         <div className="chart">
             <Chart
                 options={state.options}
@@ -59,40 +52,5 @@ const CanvChart = ({ optionsArray }) => {
         </div>
     )
 }
-
-
-
-// function renderGraph(arr){
-
-    
-//     let series = [
-//         {
-//         name: "series-1",
-//         data: [{
-//             x: 0,
-//             y: 0
-//         }]
-//         }
-//     ]
-
-
-//     if(arr.length === 0){
-//         state.updateSeries([{
-//             data: [{
-//                 x: 0,
-//                 y: 0
-//             }]
-//         }])
-//     }else{
-//         console.log("from render", arr[arr.length - 1].strikeprice);
-//         // CanvChart.updateSeries([{
-//         //     data: [{
-//         //         x: parseInt(arr[arr.length - 1].strikeprice),
-//         //         y: parseInt(arr[arr.length - 1].strikeprice)**2
-//         //     }]
-//         // }])
-//     }
-// }
-
 
 export default CanvChart
