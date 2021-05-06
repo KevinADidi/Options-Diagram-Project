@@ -10,7 +10,8 @@ const OptionForm= ({ addOption }) => {
             type: "Call",
             position: "Long",
             strikeprice: "0",
-            optionpremium: "0"
+            optionpremium: "0",
+            contracts: "0"
           }
           const newOptionsArray = optionsArray.concat(newOption)
         setOptionsArray(newOptionsArray)

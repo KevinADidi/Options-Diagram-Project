@@ -6,7 +6,7 @@ const CanvChart = ({ optionsArray }) => {
         let arr = [];
         if(optionsArray.length !== 0){
             for(var i = 0; i < optionsArray.length; i++){
-                let data = {x: parseInt(optionsArray[i].strikeprice), y: parseInt(optionsArray[i].strikeprice)};
+                let data = {x: parseInt(optionsArray[i].strikeprice) || 0, y: parseInt(optionsArray[i].strikeprice)} || 0;
                 arr.push(data);
             }
         }
