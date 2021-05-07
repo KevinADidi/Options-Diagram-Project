@@ -1,20 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Chart from "react-apexcharts";
 
+
+// let xVals = [];
+// let funcs = [];
+
+let inputs = [];
+
+const lc = () => {
+    inputs.push("Long Call");
+}
+
+const lp = () => {
+    inputs.push("Long Put");
+}
+
+const sc = () => {
+    inputs.push("Short Call");
+}
+
+const sp = () => {
+    inputs.push("Short Put");
+}
+
 const CanvChart = ({ optionsArray }) => {
+
+    let arr = [];
     const generate = () => {
-        let arr = [];
-        if(optionsArray.length !== 0){
+        arr = [];
+        inputs =[];
+        if(optionsArray.length === 0){
+            // do nothing
+        }else{
+            for(var j = 0; j < optionsArray.length; j++){
+                if(optionsArray[j].position === "Long" && optionsArray[j].type === "Call"){
+                    lc();
+                }else if(optionsArray[j].position === "Long" && optionsArray[j].type === "Put"){
+                    lp();
+                }else if(optionsArray[j].position === "Short" && optionsArray[j].type === "Call"){
+                    sc();
+                }else if(optionsArray[j].position === "Short" && optionsArray[j].type === "Put"){
+                    sp();
+                }else{
+                    console.log("Invalid input");
+                }
+            }
+
             for(var i = 0; i < optionsArray.length; i++){
-                let data = {x: parseInt(optionsArray[i].strikeprice) || 0, y: parseInt(optionsArray[i].strikeprice)} || 0;
+                let data = {x: parseFloat(optionsArray[i].strikeprice), y: parseFloat(optionsArray[i].strikeprice)};
                 arr.push(data);
             }
         }
-        console.log('generate', arr)
         return arr;
     }
 
-    const state = {
+    const initialState = {
         options: {
           chart: {
             id: "basic-bar"
@@ -34,13 +74,15 @@ const CanvChart = ({ optionsArray }) => {
           },
           series: [
               {
-                data: generate()
+                data: arr
               }
-            ]
-          };
+        ]
+    };
+    const [ state, setState ] = useState(initialState)
 
+    generate();
+    console.log(inputs);
     return (
-        console.log('from chart', state),
         <div className="chart">
             <Chart
                 options={state.options}
@@ -52,5 +94,6 @@ const CanvChart = ({ optionsArray }) => {
         </div>
     )
 }
+
 
 export default CanvChart
