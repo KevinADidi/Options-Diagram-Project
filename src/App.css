@@ -15,9 +15,8 @@ body {
   font-size: 2em;
 }
 
-footer {
+footer, .noOption {
   text-align: center;
-  margin: 10%;
 }
 
 button {
@@ -74,13 +73,17 @@ button {
   text-align: right;
 }
 
-.option input {
+.textField {
   font-family: 'Courier New', Courier, monospace;
   font-size: 20px;
   width: 70px;
   text-align: right;
 }
 
-.noOption {
-  text-align: center;
+.inputOptionName {
+  font-family: 'Courier New', Courier, monospace;
+  text-align: left;
+  font-size: 20px;
+  width: 200px;
+  margin-right: 5px;
 }

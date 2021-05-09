@@ -15,7 +15,7 @@ const App = () => {
     <div className="main">
       <h1 className="title">Options Visualizer</h1>
       <CanvChart optionsArray={options} className="chart"/>
-      <OptionForm addOption={updateOption}/>
+      <OptionForm changeOptions={updateOption}/>
       <footer>
         <p>2021 🚀🚀🚀</p>
       </footer>
